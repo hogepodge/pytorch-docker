@@ -40,6 +40,7 @@ RUN pip3 install \
   torchdatasets \
   torchtext \
   datasets \
+  transformers \
   --extra-index-url https://download.pytorch.org/whl/cpu
 
 # Create a non-root user
