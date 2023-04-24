@@ -24,6 +24,16 @@ push-pytorch-amd64:
 	docker push hogepodge/pytorch:amd64-latest
 
 push-notebook-pytorch-amd64:
-	docker push hogepodge/notebook-pytorch:latest
+	docker push hogepodge/notebook-pytorch:amd64-latest
 
-
+release-latest:
+	docker manifest create \
+        hogepodge/pytorch:latest \
+        --amend hogepodge/pytorch:arm64-latest \
+        --amend hogepodge/pytorch:amd64-latest
+	docker manifest push hogepodge/pytorch:latest
+	docker manifest create \
+        hogepodge/notebook-pytorch:latest \
+        --amend hogepodge/notebook-pytorch:arm64-latest \
+        --amend hogepodge/notebook-pytorch:amd64-latest
+	docker manifest push hogepodge/notebook-pytorch:latest
