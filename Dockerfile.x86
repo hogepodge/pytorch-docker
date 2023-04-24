@@ -1,0 +1,17 @@
+FROM hogepodge/pytorch:latest
+
+USER root
+
+RUN pip install psutil
+
+# install the rest of the jupyter toolkit
+RUN pip install \
+  jupyter \
+  jupyterlab \
+  matplotlib
+
+# switch back to the non-root user and set home
+USER pytorch
+WORKDIR /home/pytorch
+
+CMD ["jupyter", "lab", "--ip", "0.0.0.0"]

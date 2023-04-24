@@ -8,6 +8,9 @@ pytorch:
 notebook-pytorch: pytorch
 	docker build . -t hogepodge/notebook-pytorch:latest -f Dockerfile.notebook
 
+notebook-pytorch-x86: pytorch
+	docker build . -t hogepodge/notebook-pytorch:latest -f Dockerfile.x86
+
 push-pytorch:
 	docker push hogepodge/pytorch:latest
 
