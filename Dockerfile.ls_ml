@@ -1,0 +1,24 @@
+FROM hogepodge/pytorch:latest
+
+RUN mkdir /home/pytorch/backend
+
+USER root
+
+
+RUN apt update -y \
+ && apt upgrade -y \
+ && apt install git python-is-python3 -y \
+ && git clone https://github.com/heartexlabs/label-studio-ml-backend \
+ && cd label-studio-ml-backend \
+ && pip install -U -e .
+
+COPY mlbackend.sh /home/pytorch/mlbackend.sh
+RUN chmod +x /home/pytorch/mlbackend.sh
+RUN chown pytorch /home/pytorch/mlbackend.sh
+
+# switch back to the non-root user and set home
+USER pytorch
+
+WORKDIR /home/pytorch
+
+CMD ["/home/pytorch/mlbackend.sh"]
