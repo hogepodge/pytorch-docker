@@ -38,8 +38,8 @@ class SentimentModel(LabelStudioMLBase):
                     'value': {'choices': [self.label_map[predicted_class]]},
                     # optionally you can include prediction scores that you can use to sort the tasks
                     # and do active learning
-                    'score': float(predicted_prob)
                 }],
+                'score': float(predicted_prob)
             })
         return predictions
 
